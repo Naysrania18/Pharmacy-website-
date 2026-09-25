@@ -1,20 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, DM_Sans } from "next/font/google";
+import { Fraunces, Atkinson_Hyperlegible_Next } from "next/font/google";
 import "./globals.css";
-import { PHARMACY, HOURS, DayHours } from "@/content/site";
+import { PHARMACY, HOURS, PHONE_E164, type DayHours } from "@/content/site";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
   display: "swap",
-  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const atkinson = Atkinson_Hyperlegible_Next({
+  variable: "--font-atkinson",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600"],
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
@@ -25,9 +26,6 @@ export const metadata: Metadata = {
   },
   description:
     "Local pharmacy on Port Road, Letterkenny, open until 9pm Monday to Friday. Prescriptions, pharmacist advice, vaccinations and blood pressure checks. Call 074 921 0034.",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "Sweeney's Late Night Pharmacy, Port Road, Letterkenny",
     description:
@@ -44,9 +42,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0F2A2B",
+  themeColor: "#0C231B",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 function getOpens(h: DayHours) {
@@ -70,7 +69,7 @@ export default function RootLayout({
     description:
       "Community pharmacy on Port Road, Letterkenny offering prescriptions, clinical pharmacist advice, vaccinations and health checks.",
     url: "https://sweeneypharmacy.ie",
-    telephone: "+353749210034",
+    telephone: PHONE_E164,
     email: PHARMACY.email,
     address: {
       "@type": "PostalAddress",
@@ -101,28 +100,42 @@ export default function RootLayout({
       },
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Sunday", "PublicHolidays"],
+        dayOfWeek: "Sunday",
         opens: getOpens(HOURS.sunday),
         closes: getCloses(HOURS.sunday),
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: "PublicHolidays",
+        opens: getOpens(HOURS.bankHoliday),
+        closes: getCloses(HOURS.bankHoliday),
       },
     ],
     hasMap: PHARMACY.googleMapsUrl,
   };
+
+  // On a plain refresh, start at the top and drop any #section from the URL. Without this the
+  // browser restores the old scroll position or jumps to the hash, so a refresh "takes you down".
+  // Runs before first paint; back/forward and normal visits are untouched.
+  const startAtTopOnReload =
+    'try{var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"){history.scrollRestoration="manual";if(location.hash){history.replaceState(history.state,"",location.pathname+location.search)}var stop=false,go=function(){if(!stop)scrollTo({top:0,left:0,behavior:"instant"})};["wheel","touchstart","keydown","mousedown"].forEach(function(t){addEventListener(t,function(){stop=true},{once:true,passive:true})});addEventListener("DOMContentLoaded",go);addEventListener("load",go);[60,200,450,900].forEach(function(t){setTimeout(go,t)});setTimeout(function(){history.scrollRestoration="auto"},1500)}}catch(e){}';
 
   const safeJsonLdString = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
 
   return (
     <html
       lang="en-IE"
-      className={`${fraunces.variable} ${dmSans.variable} h-full antialiased scroll-smooth`}
+      data-scroll-behavior="smooth"
+      className={`${fraunces.variable} ${atkinson.variable} h-full antialiased`}
     >
       <head>
+        <script dangerouslySetInnerHTML={{ __html: startAtTopOnReload }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: safeJsonLdString }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-paper text-body selection:bg-teal selection:text-surface">
+      <body className="min-h-full flex flex-col font-sans bg-paper text-body">
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

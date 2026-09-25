@@ -1,114 +1,85 @@
-import React from "react";
-import Image from "next/image";
 import { Icon } from "@/components/icons";
 import { StatusPill } from "@/components/status/StatusPill";
-import { Reveal } from "@/components/ui/Reveal";
-import { HERO_COPY, PHARMACY, URGENT_HELP, TRUST_FACTS } from "@/content/site";
-import heroImg from "@/assets/images/pharmacy-interior-placeholder.png";
+import { LitWindow } from "@/components/sections/LitWindow";
+import { HERO_COPY, PHARMACY, URGENT_HELP } from "@/content/site";
+
+const FACTS = [
+  { k: "Pharmacist", v: "Karima Sweeney MPSI" },
+  { k: "Open late", v: "Until 9pm, Monday to Friday" },
+  { k: "Find us", v: "Port Road, Letterkenny" },
+] as const;
 
 export function Hero() {
   return (
-    <section className="relative pt-8 pb-16 md:pt-12 md:pb-24 bg-paper border-b border-ink/10 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* Split Hero Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Copy & Actions */}
-          <div className="lg:col-span-7 space-y-6">
-            <Reveal>
-              <span className="eyebrow inline-block mb-2">
-                {HERO_COPY.eyebrow}
+    <section className="on-dark grain panel relative overflow-hidden bg-ink text-on-dark" aria-labelledby="hero-title">
+      <div className="wrap grid flex-1 content-center items-center gap-x-10 gap-y-14 py-12 sm:py-16 lg:grid-cols-[1.15fr_0.85fr]">
+        <div>
+          <p className="eyebrow rise" style={{ "--d": "0ms" } as React.CSSProperties}>
+            {HERO_COPY.eyebrow}
+          </p>
+          <h1 id="hero-title" className="mt-6 max-w-[14ch]">
+            <span className="hero-line" style={{ "--i": 0 } as React.CSSProperties}>
+              <span>
+                Your <em>late night</em>
               </span>
-              <h1 className="font-serif font-bold text-ink text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-balance">
-                {HERO_COPY.h1}
-              </h1>
-            </Reveal>
+            </span>{" "}
+            <span className="hero-line" style={{ "--i": 1 } as React.CSSProperties}>
+              <span>pharmacy</span>
+            </span>{" "}
+            <span className="hero-line" style={{ "--i": 2 } as React.CSSProperties}>
+              <span>on Port Road</span>
+            </span>
+          </h1>
+          <p className="rise mt-7 max-w-[34rem] text-lg text-on-dark-muted sm:text-xl" style={{ "--d": "180ms" } as React.CSSProperties}>
+            {HERO_COPY.subline}
+          </p>
 
-            <Reveal delayMs={100}>
-              <p className="text-body text-lg sm:text-xl leading-relaxed max-w-2xl font-normal text-pretty">
-                {HERO_COPY.subline}
-              </p>
-            </Reveal>
-
-            {/* CTAs */}
-            <Reveal delayMs={200}>
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <a
-                  href={PHARMACY.phoneTel}
-                  className="btn btn-primary text-base py-3.5 px-6 shadow-sm"
-                >
-                  <Icon name="phone" className="w-5 h-5 mr-2" />
-                  <span>{HERO_COPY.primaryCta}</span>
-                </a>
-                <a
-                  href="#visit"
-                  className="btn btn-secondary text-base py-3.5 px-6"
-                >
-                  <span>{HERO_COPY.secondaryCta}</span>
-                </a>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Right Column: Imagery & Floating Status */}
-          <div className="lg:col-span-5">
-            <Reveal delayMs={150}>
-              <div className="relative rounded-3xl overflow-hidden border border-ink/10 bg-surface shadow-md aspect-4/3 sm:aspect-16/10 lg:aspect-4/3">
-                <Image
-                  src={heroImg}
-                  alt="Sweeney's Pharmacy counter and interior on Port Road"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 45vw"
-                  className="object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
-
-                {/* Overlaid Badges */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2">
-                  <StatusPill variant="hero" />
-                  <div className="bg-surface/90 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-semibold text-ink border border-ink/10 flex items-center gap-1.5 shadow-xs">
-                    <Icon name="badge" className="w-3.5 h-3.5 text-teal" />
-                    <span>Karima Sweeney MPSI</span>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-
-        {/* Urgent Help Strip */}
-        <Reveal delayMs={250}>
-          <div className="bg-sage/40 border border-ink/10 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <Icon name="alert" className="w-5 h-5 text-amber-deep shrink-0 mt-0.5" />
-              <div className="text-sm">
-                <span className="font-semibold text-ink">Urgent Help: </span>
-                <span className="text-body">{URGENT_HELP.emergency}</span>
-                <span className="block sm:inline sm:ml-2 text-muted">
-                  {URGENT_HELP.outOfHours}
-                </span>
-              </div>
-            </div>
-            <a
-              href={`tel:${URGENT_HELP.outOfHoursPhone.replace(/\s/g, "")}`}
-              className="text-xs font-semibold text-teal hover:underline shrink-0"
-            >
-              Call Out-of-Hours GP ({URGENT_HELP.outOfHoursPhone})
+          <div className="rise mt-9 flex flex-wrap items-center gap-3" style={{ "--d": "280ms" } as React.CSSProperties}>
+            <a href={PHARMACY.phoneTel} className="btn btn-lamp">
+              <Icon name="phone" size={20} />
+              <span>{HERO_COPY.primaryCta}</span>
+            </a>
+            <a href="#visit" className="btn btn-outline-dark">
+              <Icon name="mapPin" size={20} />
+              <span>{HERO_COPY.secondaryCta}</span>
             </a>
           </div>
-        </Reveal>
 
-        {/* Four-Fact Trust Row */}
-        <Reveal delayMs={300}>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-ink/10">
-            {TRUST_FACTS.map((fact) => (
-              <div key={fact.title} className="space-y-1">
-                <h4 className="font-semibold text-sm text-ink">{fact.title}</h4>
-                <p className="text-xs text-muted leading-relaxed">{fact.subtitle}</p>
+          <div className="rise mt-8" style={{ "--d": "360ms" } as React.CSSProperties}>
+            <StatusPill announce />
+          </div>
+
+          <dl className="rise mt-14 grid gap-x-8 gap-y-5 border-t border-line-dark pt-7 sm:grid-cols-3" style={{ "--d": "440ms" } as React.CSSProperties}>
+            {FACTS.map((fact) => (
+              <div key={fact.k}>
+                <dt className="text-xs font-bold uppercase tracking-[0.16em] text-brass">{fact.k}</dt>
+                <dd className="mt-1.5 text-[0.9375rem] text-on-dark">{fact.v}</dd>
               </div>
             ))}
-          </div>
-        </Reveal>
+          </dl>
+        </div>
+
+        <div className="rise" style={{ "--d": "200ms" } as React.CSSProperties}>
+          <LitWindow />
+        </div>
+      </div>
+
+      {/* Urgent help band */}
+      <div className="border-t border-line-dark bg-ink-2/60">
+        <div className="wrap flex flex-col gap-2 py-4 text-[0.9375rem] sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+          <p className="flex items-start gap-3 text-on-dark">
+            <Icon name="alert" size={20} className="mt-0.5 shrink-0 text-lamp" />
+            <span>
+              <strong className="font-bold">{URGENT_HELP.emergency}</strong>{" "}
+              <span className="text-on-dark-muted">{URGENT_HELP.outOfHours}</span>
+            </span>
+          </p>
+          {URGENT_HELP.outOfHoursPhone && (
+            <a href={`tel:${URGENT_HELP.outOfHoursPhone.replace(/\s/g, "")}`} className="link-arrow shrink-0">
+              Out-of-hours GP: {URGENT_HELP.outOfHoursPhone}
+            </a>
+          )}
+        </div>
       </div>
     </section>
   );

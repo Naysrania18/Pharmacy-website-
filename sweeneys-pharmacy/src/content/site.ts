@@ -81,6 +81,7 @@ export const BANK_HOLIDAY_HOURS = { open: "11:00", close: "18:00" };
 
 export const BANK_HOLIDAYS_2026: readonly string[] = [
   "2026-01-01",
+  "2026-02-02", // St Brigid's Day
   "2026-03-17",
   "2026-04-06",
   "2026-05-04",
@@ -91,7 +92,20 @@ export const BANK_HOLIDAYS_2026: readonly string[] = [
   "2026-12-26",
 ];
 
-export const BANK_HOLIDAYS: readonly string[] = [...BANK_HOLIDAYS_2026];
+// TODO_CONFIRM(2027 dates against the official Irish public holiday list before 2027)
+export const BANK_HOLIDAYS_2027: readonly string[] = [
+  "2027-01-01",
+  "2027-02-01", // St Brigid's Day
+  "2027-03-17",
+  "2027-03-29", // Easter Monday
+  "2027-05-03",
+  "2027-06-07",
+  "2027-08-02",
+  "2027-10-25",
+  "2027-12-27", // St Stephen's Day observed (26th is a Sunday)
+];
+
+export const BANK_HOLIDAYS: readonly string[] = [...BANK_HOLIDAYS_2026, ...BANK_HOLIDAYS_2027];
 
 // ---------------------------------------------------------------------------
 // Grouped convenience objects for UI components
@@ -117,7 +131,7 @@ export const PHARMACY = {
 export const CONNECTDOC = {
   url: CONNECTDOC_URL,
   heading: "See a GP online",
-  tagline: "GP Telehealth",
+  tagline: "GP telehealth",
   separateTag: "Separate company",
   body: "If you can't get to your own GP, ConnectDoc offers online GP consultations. It is a separate company. We don't run it and we aren't involved in your consultation.",
   consentText:
@@ -143,7 +157,12 @@ export const ASK_PHARMACY = {
 
 export const ABOUT_COPY = {
   heading: "Your local pharmacy on Port Road",
-  body: `Sweeney's Late Night Pharmacy opened on Port Road in ${TODO_CONFIRM("month, year")}. Karima Sweeney MPSI, ${TODO_CONFIRM("superintendent pharmacist")}, runs it with her team. Late opening means you can call in after work for a prescription, a question about your medicines, or advice on something that's been bothering you. If it needs a GP, we'll say so.`,
+  // TODO_CONFIRM(opening month/year, superintendent title) — see CONFIRM.md §2–3
+  body: "Karima Sweeney MPSI runs Sweeney's Late Night Pharmacy on Port Road with her team. We open late, so you can call in after work for a prescription, to ask about your medicines, or to get advice on something that's been bothering you. If it needs a GP, we'll say so.",
+  pillars: [
+    { title: "Registered pharmacist", text: "Karima Sweeney MPSI supervises the pharmacy." },
+    { title: "Open late", text: "Until 9pm Monday to Friday and 8pm on Saturday." },
+  ],
 };
 
 export const PRODUCTS_COPY = {
@@ -153,15 +172,15 @@ export const PRODUCTS_COPY = {
 
 export const PRODUCTS = [
   {
-    title: "Over-The-Counter Medicines",
-    tag: "Everyday Remedies",
+    title: "Over-the-counter medicines",
+    tag: "Everyday remedies",
     description:
       "Medicines for common ailments including colds, coughs, seasonal allergies and pain relief.",
     image: "otc-medicines.jpg",
   },
   {
-    title: "BioCare Supplements",
-    tag: "Vitamins & Minerals",
+    title: "BioCare supplements",
+    tag: "Vitamins and minerals",
     description:
       "BioCare vitamins, minerals and nutritional supplements. Ask our pharmacist for advice on what suits your diet.",
     image: "biocare-supplements.jpg",
@@ -172,14 +191,13 @@ export const COMMUNITY = {
   wellnessDay: {
     heading: "Letterkenny Wellness Day",
     body: "We ran a free health event in Letterkenny with blood pressure checks and health advice.",
-    dateNote: TODO_CONFIRM("date of Wellness Day event"),
+    // TODO_CONFIRM(date of Wellness Day event) — CONFIRM.md §6
   },
   charity: {
     heading: "Salam Charity Gaza Medical Support",
     amount: "€1,500",
     body: "We donated 1,500 euro to Salam Charity towards medicines and supplies for families in Gaza.",
-    rcnNote: TODO_CONFIRM("1142191 - UK RCN format"),
-    consentNote: TODO_CONFIRM("Charity consent & date"),
+    // TODO_CONFIRM(charity RCN, consent and year) — CONFIRM.md §6
   },
 };
 
@@ -190,7 +208,9 @@ export const VISIT_COPY = {
 export const URGENT_HELP = {
   emergency: "In an emergency call 112 or 999.",
   outOfHours: "Out-of-hours GP is by appointment only. Call first.",
-  outOfHoursPhone: TODO_CONFIRM("0818 400 911 / Nowdoc"),
+  // TODO_CONFIRM(out-of-hours GP number, e.g. Nowdoc) — CONFIRM.md §5.
+  // Set to a string once confirmed and the site will show a call link.
+  outOfHoursPhone: null as string | null,
 };
 
 export const TRUST_FACTS = [
@@ -200,7 +220,7 @@ export const TRUST_FACTS = [
   },
   {
     title: "Late Opening",
-    subtitle: "Open until 9pm Monday – Friday",
+    subtitle: "Open until 9pm Monday to Friday",
   },
   {
     title: "Central Location",
@@ -223,6 +243,7 @@ export const NAV_LINKS = [
   { href: "#services", label: "Services" },
   { href: "#ask-and-gp", label: "See a GP" },
   { href: "#about", label: "About" },
+  { href: "#shop", label: "Shop" },
   { href: "#community", label: "Community" },
   { href: "#visit", label: "Visit" },
 ] as const;
@@ -237,6 +258,7 @@ export const SERVICES = [
     title: "Prescriptions",
     description:
       "We dispense medical card, Drug Payment Scheme and private prescriptions.",
+    chips: ["Medical card", "Drug Payment Scheme", "Private"],
     icon: "pill" as const,
   },
   {
@@ -249,15 +271,15 @@ export const SERVICES = [
   {
     id: "vaccinations",
     title: "Vaccinations",
-    description:
-      `Flu and COVID-19 vaccinations from a trained pharmacist. ${TODO_CONFIRM("which vaccines, dates")}`,
+    // TODO_CONFIRM(which vaccines, dates) — CONFIRM.md §5
+    description: "Flu and COVID-19 vaccinations from a trained pharmacist.",
     icon: "syringe" as const,
   },
   {
     id: "blood-pressure",
     title: "Blood pressure checks",
-    description:
-      `Walk in for a blood pressure check. ${TODO_CONFIRM("walk-in cost")}`,
+    // TODO_CONFIRM(walk-in vs appointment, cost) — CONFIRM.md §5
+    description: "Walk in for a blood pressure check.",
     icon: "heart-pulse" as const,
   },
   {

@@ -1,59 +1,48 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ElementType, type ReactNode } from "react";
 
 interface RevealProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   delayMs?: number;
-  as?: React.ElementType;
+  as?: ElementType;
+  /** text: fade, rise and soft blur. card: fade, rise and scale, no blur. */
+  variant?: "text" | "card";
 }
 
-export function Reveal({
-  children,
-  className = "",
-  delayMs = 0,
-  as: Component = "div",
-}: RevealProps) {
+/** Reveals content once, the first time it scrolls into view. */
+export function Reveal({ children, className = "", delayMs = 0, as: Component = "div", variant = "text" }: RevealProps) {
   const ref = useRef<HTMLElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
-    // Check if user prefers reduced motion
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReducedMotion) {
-      setIsVisible(true);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
       return;
     }
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(el);
+          setVisible(true);
+          observer.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
     );
-
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  const delayStyle =
-    delayMs > 0 ? { transitionDelay: `${delayMs}ms` } : undefined;
+  const style = delayMs ? ({ "--reveal-delay": `${delayMs}ms` } as CSSProperties) : undefined;
 
   return (
     <Component
       ref={ref}
-      style={delayStyle}
-      className={`reveal-item ${isVisible ? "is-visible" : ""} ${className}`}
+      style={style}
+      className={`reveal reveal-${variant} ${visible ? "revealed" : ""} ${className}`}
     >
       {children}
     </Component>

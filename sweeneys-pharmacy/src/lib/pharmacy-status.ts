@@ -102,13 +102,17 @@ function dublinHM(d: Date): { h: number; m: number } {
   return { h, m };
 }
 
+/** True when the Dublin calendar date of `d` is a listed bank holiday. */
+export function isBankHoliday(d: Date = new Date()): boolean {
+  return BANK_HOLIDAYS.includes(dublinDateString(d));
+}
+
 /**
  * Get the DayHours for a given Date in Europe/Dublin.
  * Bank holidays override the day-of-week schedule.
  */
 function getDayHours(d: Date): DayHours {
-  const dateStr = dublinDateString(d);
-  if (BANK_HOLIDAYS.includes(dateStr)) {
+  if (isBankHoliday(d)) {
     return HOURS.bankHoliday;
   }
   const dow = dublinDayOfWeek(d);

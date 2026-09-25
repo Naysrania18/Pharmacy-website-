@@ -1,71 +1,57 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import { Icon } from "@/components/icons";
+import { useEffect, useState } from "react";
+import { Icon, type IconName } from "@/components/icons";
 import { PHARMACY } from "@/content/site";
 
+interface Action {
+  href: string;
+  label: string;
+  aria: string;
+  icon: IconName;
+  external?: boolean;
+  primary?: boolean;
+}
+
+const ACTIONS: readonly Action[] = [
+  { href: PHARMACY.phoneTel, label: "Call", aria: "Call Sweeney's Pharmacy", icon: "phone", primary: true },
+  { href: PHARMACY.googleMapsUrl, label: "Directions", aria: "Get directions to Sweeney's Pharmacy", icon: "mapPin", external: true },
+  { href: PHARMACY.whatsappUrl, label: "WhatsApp", aria: "Message Sweeney's Pharmacy on WhatsApp", icon: "whatsapp", external: true },
+];
+
+/** Thumb-reach shortcuts on phones. Steps aside once the Visit section is on screen. */
 export function MobileActionBar() {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    // Hide mobile action bar when #visit section is in view
-    const visitElement = document.getElementById("visit");
-    if (!visitElement) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setHidden(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(visitElement);
+    const visit = document.getElementById("visit");
+    if (!visit) return;
+    const observer = new IntersectionObserver(([entry]) => setHidden(entry.isIntersecting), { threshold: 0.1 });
+    observer.observe(visit);
     return () => observer.disconnect();
   }, []);
 
-  if (hidden) return null;
-
   return (
-    <div
-      className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-surface/95 backdrop-blur-md border-t border-ink/10 shadow-lg px-3 py-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))]"
-      role="region"
-      aria-label="Mobile quick actions"
+    <nav
+      aria-label="Quick actions"
+      hidden={hidden}
+      className="on-dark fixed inset-x-0 bottom-0 z-40 border-t border-line-dark bg-ink/95 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] backdrop-blur-md md:hidden"
     >
-      <div className="grid grid-cols-3 gap-2 max-w-md mx-auto h-12">
-        {/* 1. Call */}
-        <a
-          href={PHARMACY.phoneTel}
-          className="flex items-center justify-center gap-1.5 bg-teal text-surface rounded-lg font-medium text-xs sm:text-sm shadow-xs active:scale-95 transition-transform"
-          aria-label="Call Sweeney's Pharmacy"
-        >
-          <Icon name="phone" className="w-4 h-4 shrink-0" />
-          <span>Call</span>
-        </a>
-
-        {/* 2. Directions */}
-        <a
-          href={PHARMACY.googleMapsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1.5 bg-sage text-ink rounded-lg font-medium text-xs sm:text-sm active:scale-95 transition-transform"
-          aria-label="Get directions to Sweeney's Pharmacy"
-        >
-          <Icon name="mapPin" className="w-4 h-4 shrink-0 text-teal" />
-          <span>Directions</span>
-        </a>
-
-        {/* 3. WhatsApp */}
-        <a
-          href={PHARMACY.whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1.5 bg-sage text-ink rounded-lg font-medium text-xs sm:text-sm active:scale-95 transition-transform"
-          aria-label="Message Sweeney's Pharmacy on WhatsApp"
-        >
-          <Icon name="whatsapp" className="w-4 h-4 shrink-0 text-teal" />
-          <span>WhatsApp</span>
-        </a>
-      </div>
-    </div>
+      <ul className="mx-auto grid max-w-md grid-cols-3 gap-2">
+        {ACTIONS.map((a) => (
+          <li key={a.label}>
+            <a
+              href={a.href}
+              aria-label={a.aria}
+              {...(a.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              className={`flex min-h-12 items-center justify-center gap-2 rounded-full text-sm font-bold transition-transform active:scale-95 ${a.primary ? "bg-lamp text-ink" : "bg-ink-2 text-on-dark ring-1 ring-line-dark"}`}
+            >
+              <Icon name={a.icon} size={18} />
+              {a.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }

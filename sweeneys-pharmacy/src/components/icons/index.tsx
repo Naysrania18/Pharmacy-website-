@@ -28,7 +28,8 @@ export type IconName =
   | "check"
   | "badge"
   | "directions"
-  | "whatsapp";
+  | "whatsapp"
+  | "copy";
 
 type IconProps = React.SVGProps<SVGSVGElement> & {
   name: IconName;
@@ -197,6 +198,12 @@ const PATHS: Record<IconName, React.ReactNode> = {
     <>
       <path strokeLinecap="round" strokeLinejoin="round" d="m3 9 9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
       <polyline strokeLinecap="round" strokeLinejoin="round" points="9 22 9 12 15 12 15 22" />
+    </>
+  ),
+  copy: (
+    <>
+      <rect x="9" y="9" width="11" height="11" rx="2" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 15V6a2 2 0 012-2h9" />
     </>
   ),
   whatsapp: (

@@ -1,129 +1,107 @@
-import React from "react";
 import Link from "next/link";
-import { Icon } from "@/components/icons";
 import { StatusPill } from "@/components/status/StatusPill";
-import { PHARMACY, FOOTER_DISCLAIMER, TODO_CONFIRM } from "@/content/site";
+import { Mark } from "@/components/ui/Mark";
+import { FOOTER_DISCLAIMER, NAV_LINKS, PHARMACY } from "@/content/site";
+import { groupWeekHours } from "@/lib/hours-format";
+
+const HEADING = "text-xs font-bold uppercase tracking-[0.18em] text-brass";
 
 export function Footer() {
+  const hours = groupWeekHours();
+
   return (
-    <footer className="bg-ink text-on-dark pt-16 pb-24 md:pb-16 border-t border-ink-2">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12">
-          {/* Col 1: Brand & Status */}
-          <div className="space-y-4 md:col-span-1">
-            <div className="space-y-1">
-              <h3 className="font-serif text-xl font-bold text-surface">
-                {PHARMACY.name}
-              </h3>
-              <p className="text-sm text-on-dark-muted">
-                Supervised by {PHARMACY.pharmacist}
-              </p>
-            </div>
-            <div className="pt-2">
-              <StatusPill variant="footer" />
+    <footer className="on-dark relative overflow-hidden bg-ink pb-28 pt-20 text-on-dark md:pb-14">
+      <Mark className="pointer-events-none absolute -right-16 -top-10 h-[26rem] w-[26rem] text-brass opacity-[0.05]" />
+      <div className="wrap relative">
+        <div className="grid gap-12 border-b border-line-dark pb-14 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div>
+            <p className="font-display text-[clamp(2.25rem,1.6rem+2.4vw,3.75rem)] font-medium leading-[0.95] tracking-tight">
+              Sweeney&rsquo;s <em className="text-brass">Late Night</em> Pharmacy
+            </p>
+            <p className="mt-4 text-on-dark-muted">Supervised by {PHARMACY.pharmacist}</p>
+            <div className="mt-6">
+              <StatusPill />
             </div>
           </div>
 
-          {/* Col 2: Location & Contact */}
-          <div className="space-y-3">
-            <h4 className="text-xs uppercase tracking-widest font-semibold text-amber-deep">
-              Location & Contact
-            </h4>
-            <address className="not-italic text-sm text-on-dark-muted space-y-1">
+          <div>
+            <h2 className={HEADING} style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", letterSpacing: "0.18em" }}>
+              Visit
+            </h2>
+            <address className="mt-4 space-y-1 not-italic text-on-dark-muted">
               <p>{PHARMACY.street}</p>
-              <p>{PHARMACY.town}, {PHARMACY.county}</p>
-              <p>Eircode: <span className="font-mono">{PHARMACY.eircode}</span></p>
+              <p>
+                {PHARMACY.town}, {PHARMACY.county}
+              </p>
+              <p className="tabular">{PHARMACY.eircode}</p>
             </address>
-            <div className="pt-1 space-y-1 text-sm">
-              <p>
-                <a href={PHARMACY.phoneTel} className="hover:text-surface transition-colors">
-                  Phone: {PHARMACY.phoneDisplay}
+            <ul className="mt-4 space-y-1">
+              <li>
+                <a href={PHARMACY.phoneTel} className="tabular font-bold hover:text-brass">
+                  {PHARMACY.phoneDisplay}
                 </a>
-              </p>
-              <p>
-                <a href={`mailto:${PHARMACY.email}`} className="hover:text-surface transition-colors">
-                  Email: {PHARMACY.email}
+              </li>
+              <li>
+                <a href={`mailto:${PHARMACY.email}`} className="text-on-dark-muted hover:text-brass">
+                  {PHARMACY.email}
                 </a>
-              </p>
-            </div>
-          </div>
-
-          {/* Col 3: Hours Summary */}
-          <div className="space-y-3">
-            <h4 className="text-xs uppercase tracking-widest font-semibold text-amber-deep">
-              Opening Hours
-            </h4>
-            <ul className="text-sm text-on-dark-muted space-y-1.5 font-mono">
-              <li>Mon – Fri: 9:00am – 9:00pm</li>
-              <li>Saturday: 9:30am – 8:00pm</li>
-              <li>Sunday: 11:00am – 6:00pm</li>
-              <li className="text-xs text-on-dark-muted/80">Bank Holidays: 11:00am – 6:00pm</li>
+              </li>
             </ul>
           </div>
 
-          {/* Col 4: Quick Links */}
-          <div className="space-y-3">
-            <h4 className="text-xs uppercase tracking-widest font-semibold text-amber-deep">
-              Navigation & Legal
-            </h4>
-            <ul className="text-sm space-y-2 text-on-dark-muted">
+          <div>
+            <h2 className={HEADING} style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", letterSpacing: "0.18em" }}>
+              Opening hours
+            </h2>
+            <dl className="mt-4 space-y-2">
+              {hours.map((row) => (
+                <div key={row.label} className="flex justify-between gap-4">
+                  <dt className="text-on-dark-muted">{row.label}</dt>
+                  <dd className="tabular font-bold">{row.hours}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <nav aria-label="Footer">
+            <h2 className={HEADING} style={{ fontFamily: "var(--font-sans)", fontSize: "0.75rem", letterSpacing: "0.18em" }}>
+              Explore
+            </h2>
+            <ul className="mt-4 space-y-2">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={`/${link.href}`} className="text-on-dark-muted hover:text-brass">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
               <li>
-                <Link href="/#services" className="hover:text-surface transition-colors">
-                  Services
+                <Link href="/privacy" className="text-on-dark-muted hover:text-brass">
+                  Privacy policy
                 </Link>
               </li>
               <li>
-                <Link href="/#ask-and-gp" className="hover:text-surface transition-colors">
-                  See a GP Online
-                </Link>
-              </li>
-              <li>
-                <Link href="/#about" className="hover:text-surface transition-colors">
-                  About Karima Sweeney
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy" className="hover:text-surface transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="hover:text-surface transition-colors">
-                  Terms of Use
+                <Link href="/terms" className="text-on-dark-muted hover:text-brass">
+                  Terms of use
                 </Link>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
 
-        {/* Regulatory & Disclaimer Band */}
-        <div className="pt-8 border-t border-ink-2/60 space-y-4 text-xs text-on-dark-muted leading-relaxed">
-          <p className="p-4 rounded-xl bg-ink-2/40 border border-ink-2/80">
-            {FOOTER_DISCLAIMER}
+        <div className="space-y-4 pt-8 text-sm leading-relaxed text-on-dark-muted">
+          <p className="max-w-4xl">{FOOTER_DISCLAIMER}</p>
+          <p>
+            Pharmacist in charge: {PHARMACY.pharmacist} ·{" "}
+            <a
+              href="https://www.psi.ie/register/pharmacies"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-brass"
+            >
+              Check the PSI register
+            </a>
           </p>
-
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
-            <div className="space-y-1">
-              <p>
-                PSI Registration: <span className="font-mono">{TODO_CONFIRM("psiRegistrationNumber")}</span> | Registered Pharmacy Premises: Port Road, Letterkenny
-              </p>
-              <p>
-                Pharmacist in Charge: {PHARMACY.pharmacist} | {" "}
-                <a
-                  href="https://www.psi.ie/register/pharmacies"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-surface"
-                >
-                  Verify on PSI Register
-                </a>
-              </p>
-            </div>
-            <div className="text-right whitespace-nowrap text-on-dark-muted/70">
-              <span>Last reviewed: September 2026</span>
-            </div>
-          </div>
         </div>
       </div>
     </footer>

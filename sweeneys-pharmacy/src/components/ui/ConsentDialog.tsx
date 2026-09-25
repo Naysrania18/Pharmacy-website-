@@ -1,122 +1,77 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useRef, useState } from "react";
 import { Icon } from "@/components/icons";
 import { CONNECTDOC } from "@/content/site";
 
+/**
+ * Interstitial shown before leaving for ConnectDoc, a separate company.
+ * Uses the native <dialog> so focus is trapped, Escape closes it and focus
+ * returns to the trigger without custom code.
+ */
 export function ConsentDialog() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [hasConsented, setHasConsented] = useState(false);
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [consented, setConsented] = useState(false);
 
-  const openDialog = () => {
-    setIsOpen(true);
-  };
+  const close = () => dialogRef.current?.close();
 
-  const closeDialog = () => {
-    setIsOpen(false);
-    triggerRef.current?.focus();
-  };
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
-        closeDialog();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
-
-  const handleProceed = () => {
-    if (hasConsented) {
-      window.open(CONNECTDOC.url, "_blank", "noopener,noreferrer");
-      closeDialog();
-    }
+  const proceed = () => {
+    if (!consented) return;
+    window.open(CONNECTDOC.url, "_blank", "noopener,noreferrer");
+    close();
   };
 
   return (
     <>
-      <button
-        ref={triggerRef}
-        type="button"
-        onClick={openDialog}
-        className="btn btn-secondary inline-flex items-center gap-2"
-        aria-haspopup="dialog"
-        aria-expanded={isOpen}
-      >
-        <span>See a GP online</span>
-        <Icon name="external" className="w-4 h-4" />
+      <button type="button" className="btn btn-outline" onClick={() => dialogRef.current?.showModal()}>
+        <span>{CONNECTDOC.heading}</span>
+        <Icon name="external" size={18} />
       </button>
 
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ink/60 backdrop-blur-sm animate-fade-in"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="consent-dialog-title"
-        >
-          <div
-            ref={dialogRef}
-            className="w-full max-w-lg bg-surface rounded-2xl p-6 sm:p-8 shadow-lg border border-ink/10 space-y-5 relative"
+      <dialog
+        ref={dialogRef}
+        aria-labelledby="consent-title"
+        onClose={() => setConsented(false)}
+        onClick={(e) => e.target === dialogRef.current && close()}
+        className="m-auto w-[min(32rem,calc(100vw-2rem))] rounded-[1.5rem] bg-surface p-0 text-body shadow-[var(--shadow-lg)] backdrop:bg-ink/70 backdrop:backdrop-blur-sm"
+      >
+        <div className="relative space-y-5 p-7 sm:p-9">
+          <button
+            type="button"
+            onClick={close}
+            aria-label="Close"
+            className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full text-muted transition-colors hover:bg-paper-2 hover:text-ink"
           >
-            <button
-              type="button"
-              onClick={closeDialog}
-              className="absolute top-4 right-4 text-muted hover:text-ink focus-visible:outline-teal p-1 rounded-md"
-              aria-label="Close dialog"
-            >
-              <Icon name="close" className="w-5 h-5" />
+            <Icon name="close" size={22} />
+          </button>
+
+          <p className="eyebrow">External service</p>
+          <h3 id="consent-title" className="pr-10 !text-[1.75rem]">
+            You&rsquo;re leaving for a separate service
+          </h3>
+          <p>{CONNECTDOC.disclaimer}</p>
+
+          <label className="flex cursor-pointer items-start gap-3 rounded-2xl bg-sage/60 p-4 font-bold text-ink">
+            <input
+              type="checkbox"
+              checked={consented}
+              onChange={(e) => setConsented(e.target.checked)}
+              className="mt-1 h-5 w-5 shrink-0 accent-[var(--color-green)]"
+            />
+            <span>{CONNECTDOC.consentText}</span>
+          </label>
+
+          <div className="flex flex-col-reverse gap-3 pt-1 sm:flex-row sm:justify-end">
+            <button type="button" onClick={close} className="btn btn-outline">
+              Cancel
             </button>
-
-            <div className="flex items-center gap-3 text-amber-deep">
-              <Icon name="alert" className="w-6 h-6 shrink-0" />
-              <h3
-                id="consent-dialog-title"
-                className="font-serif text-xl font-semibold text-ink"
-              >
-                External GP Service Notice
-              </h3>
-            </div>
-
-            <p className="text-body text-sm sm:text-base leading-relaxed">
-              {CONNECTDOC.disclaimer}
-            </p>
-
-            <div className="bg-sage/40 p-4 rounded-xl border border-ink/5 space-y-3">
-              <label className="flex items-start gap-3 cursor-pointer text-sm font-medium text-ink select-none">
-                <input
-                  type="checkbox"
-                  checked={hasConsented}
-                  onChange={(e) => setHasConsented(e.target.checked)}
-                  className="mt-1 w-4 h-4 text-teal rounded border-ink/20 focus:ring-teal"
-                />
-                <span>{CONNECTDOC.consentText}</span>
-              </label>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center justify-end gap-3 pt-2">
-              <button
-                type="button"
-                onClick={closeDialog}
-                className="btn btn-secondary w-full sm:w-auto text-center"
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                disabled={!hasConsented}
-                onClick={handleProceed}
-                className="btn btn-primary w-full sm:w-auto text-center disabled:opacity-50 disabled:cursor-not-allowed"
-                aria-disabled={!hasConsented}
-              >
-                {CONNECTDOC.buttonText}
-              </button>
-            </div>
+            <button type="button" onClick={proceed} disabled={!consented} className="btn btn-green">
+              {CONNECTDOC.buttonText}
+              <Icon name="external" size={18} />
+            </button>
           </div>
         </div>
-      )}
+      </dialog>
     </>
   );
 }

@@ -1,105 +1,69 @@
-import React from "react";
-import Image from "next/image";
-import { Icon } from "@/components/icons";
+import { CountUp } from "@/components/ui/CountUp";
 import { Reveal } from "@/components/ui/Reveal";
+import { SpotlightGrid } from "@/components/ui/SpotlightGrid";
+import { Snapshot } from "@/components/ui/Snapshot";
 import { COMMUNITY } from "@/content/site";
 import wellnessImg from "@/assets/images/wellness-day.jpg";
-import salamImg from "@/assets/images/salam-charity.jpg";
+import charityImg from "@/assets/images/salam-charity.jpg";
 
 export function Community() {
+  const { wellnessDay, charity } = COMMUNITY;
+  const amountValue = Number(charity.amount.replace(/\D/g, ""));
+  const amountPrefix = charity.amount.replace(/[\d,.\s]/g, "");
+
   return (
-    <section id="community" className="py-16 md:py-24 bg-sage/30 border-b border-ink/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        {/* Section Header */}
-        <Reveal>
-          <div className="max-w-2xl space-y-3">
-            <span className="eyebrow">Local & Global Support</span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-ink tracking-tight">
-              Community & Outreach
-            </h2>
-            <p className="text-body text-base sm:text-lg">
-              Supporting health in Letterkenny and providing humanitarian aid abroad.
-            </p>
-          </div>
+    <section id="community" className="panel section-y bg-sage" aria-labelledby="community-title">
+      <div className="wrap">
+        <Reveal className="max-w-3xl">
+          <p className="eyebrow">Local &amp; global support</p>
+          <h2 id="community-title" className="mt-4">
+            Community &amp; <em>outreach</em>
+          </h2>
+          <p className="mt-4 max-w-[52ch] text-lg text-muted">
+            A free health event in Letterkenny, and a donation for families in Gaza.
+          </p>
         </Reveal>
 
-        {/* Asymmetric Community Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Large Card: Wellness Day */}
-          <div className="lg:col-span-7">
-            <Reveal className="h-full">
-              <div className="bg-surface border border-ink/10 rounded-3xl overflow-hidden shadow-xs hover:shadow-md transition-shadow h-full flex flex-col">
-                <div className="relative aspect-16/9 w-full bg-sage/50">
-                  <Image
-                    src={wellnessImg}
-                    alt="Letterkenny Wellness Day free health event"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 60vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <span className="text-xs font-mono text-muted uppercase tracking-wider">
-                      Local Health Initiative
-                    </span>
-                    <h3 className="font-serif text-2xl font-bold text-ink">
-                      {COMMUNITY.wellnessDay.heading}
-                    </h3>
-                    <p className="text-body text-sm sm:text-base leading-relaxed">
-                      {COMMUNITY.wellnessDay.body}
-                    </p>
-                  </div>
-                  <div className="pt-2 text-xs text-muted font-mono">
-                    Event details & date: {COMMUNITY.wellnessDay.dateNote}
-                  </div>
-                </div>
+        <SpotlightGrid className="mt-8 grid gap-5 lg:grid-cols-2">
+          <Reveal variant="card" className="min-w-0">
+            <article data-spot className="spot relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-[1.75rem] bg-surface p-6 ring-1 ring-hairline sm:p-7 lg:flex-row lg:items-center lg:gap-5">
+              <div className="min-w-0 lg:flex-1">
+                <p className="eyebrow">Free health event</p>
+                <h3 className="mt-4 !text-[1.5rem]">{wellnessDay.heading}</h3>
+                <p className="mt-4 max-w-[42ch]">{wellnessDay.body}</p>
               </div>
-            </Reveal>
-          </div>
+              <Snapshot
+                src={wellnessImg}
+                alt="Karima Sweeney and the team with visitors at the Letterkenny Wellness Day"
+                caption="Wellness Day, Letterkenny"
+                tilt={-1.5}
+                width={wellnessImg.width * 1.05}
+                className="lg:shrink-0"
+              />
+            </article>
+          </Reveal>
 
-          {/* Compact Card: Salam Charity Gaza Donation */}
-          <div className="lg:col-span-5">
-            <Reveal delayMs={100} className="h-full">
-              <div className="bg-surface border border-ink/10 rounded-3xl p-6 sm:p-8 shadow-xs hover:shadow-md transition-shadow h-full flex flex-col justify-between space-y-6">
-                <div className="space-y-4">
-                  <div className="relative aspect-16/9 w-full rounded-2xl overflow-hidden bg-sage/30">
-                    <Image
-                      src={salamImg}
-                      alt="Salam Charity medical supplies"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 40vw"
-                      className="object-cover"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <span className="text-xs font-mono text-muted uppercase tracking-wider">
-                      Humanitarian Aid
-                    </span>
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-serif text-4xl font-bold text-ink tracking-tight">
-                        {COMMUNITY.charity.amount}
-                      </span>
-                      <span className="text-sm font-medium text-muted">Donated</span>
-                    </div>
-                    <h3 className="font-serif text-xl font-bold text-ink pt-1">
-                      {COMMUNITY.charity.heading}
-                    </h3>
-                    <p className="text-body text-sm leading-relaxed">
-                      {COMMUNITY.charity.body}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-ink/5 space-y-1 text-xs text-muted font-mono">
-                  <p>Salam Charity RCN: {COMMUNITY.charity.rcnNote}</p>
-                  <p>Confirmation: {COMMUNITY.charity.consentNote}</p>
-                </div>
+          <Reveal variant="card" delayMs={120} className="min-w-0">
+            <article data-spot className="spot on-dark grain relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-[1.75rem] bg-ink p-6 text-on-dark sm:p-7 lg:flex-row lg:items-center lg:gap-5">
+              <div className="min-w-0 lg:flex-1">
+                <p className="eyebrow">Charity</p>
+                <p className="mt-4 font-display text-[clamp(3.5rem,2rem+4.5vw,5.5rem)] italic leading-[0.9] tracking-tight text-brass">
+                  <CountUp value={amountValue} prefix={amountPrefix} />
+                </p>
+                <h3 className="mt-4 !text-[1.5rem]">{charity.heading}</h3>
+                <p className="mt-3 max-w-[42ch] text-on-dark-muted">{charity.body}</p>
               </div>
-            </Reveal>
-          </div>
-        </div>
+              <Snapshot
+                src={charityImg}
+                alt="Two members of the team holding a donation cheque for Salam Charity"
+                caption="Donation to Salam Charity"
+                tilt={1.5}
+                width={charityImg.width * 1.05}
+                className="self-end lg:shrink-0 lg:self-center"
+              />
+            </article>
+          </Reveal>
+        </SpotlightGrid>
       </div>
     </section>
   );

@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sweeney's Late Night Pharmacy in Letterkenny, Co. Donegal. Expert prescriptions, late night opening, vaccinations, BioCare supplements, and online GP consultation access.">
+  <title>Sweeney's Late Night Pharmacy | Letterkenny</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       CSS VARIABLES & RESET
+       ========================================================================== */
+    :root {
+      --primary: #0d3b2e;
+      --primary-dark: #08261e;
+      --primary-mid: #14503d;
+      --primary-light: #1e6b52;
+      --primary-subtle: #f0f7f4;
+      
+      --gold: #c9a227;
+      --gold-dark: #a8841a;
+      --gold-light: #e8c960;
+      --gold-soft: #fcf8ee;
+      --gold-border: rgba(201, 162, 39, 0.35);
+
+      --blue-doctor: #0a5c8a;
+      --blue-dark: #0a3d5c;
+      --blue-light: #1e88e5;
+      --blue-subtle: #eef6fb;
+
+      --cream: #faf6ed;
+      --cream-dark: #efe8d8;
+      --white: #ffffff;
+      
+      --text-dark: #19201d;
+      --text-body: #404a44;
+      --text-muted: #6b7770;
+      --text-light: #ffffff;
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-pill: 50px;
+      
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 10px 25px rgba(13, 59, 46, 0.09);
+      --shadow-lg: 0 20px 45px rgba(13, 59, 46, 0.16);
+      
+      --container-max: 1220px;
+      --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--cream);
+      color: var(--text-body);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* Container helper */
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Section layout */
+    .section-padding {
+      padding: 5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .section-padding {
+        padding: 3.5rem 0;
+      }
+    }
+
+    /* Decorative flourish line */
+    .ornament-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 1rem auto 1.5rem;
+      max-width: 320px;
+    }
+
+    .ornament-line::before,
+    .ornament-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .ornament-line span {
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    /* Typography helpers */
+    .eyebrow {
+      color: var(--gold-dark);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      color: var(--primary);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 0.9rem 1.9rem;
+      border-radius: var(--radius-pill);
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      border: 2px solid transparent;
+      box-shadow: var(--shadow-sm);
+      white-space: nowrap;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--primary-dark);
+      border-color: var(--gold);
+      box-shadow: 0 4px 18px rgba(201, 162, 39, 0.35);
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201, 162, 39, 0.45);
+    }
+
+    .btn-outline-gold {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--gold-light);
+      border-color: var(--gold);
+      backdrop-filter: blur(4px);
+    }
+
+    .btn-outline-gold:hover {
+      background: var(--gold);
+      color: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: #ffffff;
+      border-color: #25D366;
+      box-shadow: 0 4px 18px rgba(37, 211, 102, 0.3);
+    }
+
+    .btn-whatsapp:hover {
+      background: #20ba59;
+      border-color: #20ba59;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+    }
+
+    .btn-blue {
+      background: linear-gradient(135deg, var(--blue-doctor), var(--blue-dark));
+      color: #ffffff;
+      border-color: var(--blue-doctor);
+      box-shadow: 0 4px 18px rgba(10, 92, 138, 0.3);
+    }
+
+    .btn-blue:hover {
+      background: var(--blue-light);
+      border-color: var(--blue-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(30, 136, 229, 0.4);
+    }
+
+    .btn-disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      pointer-events: none;
+      filter: grayscale(0.2);
+    }
+
+    /* ==========================================================================
+       TOP ANNOUNCEMENT BAR
+       ========================================================================== */
+    .top-bar {
+      background-color: var(--primary-dark);
+      color: var(--cream);
+      font-size: 0.8rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+    }
+
+    .top-bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .top-bar-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    .top-bar-contacts {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .top-bar-contacts a {
+      color: var(--cream);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .top-bar-contacts a:hover {
+      color: var(--gold-light);
+    }
+
+    @media (max-width: 768px) {
+      .top-bar-contacts {
+        display: none;
+      }
+      .top-bar-inner {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    /* ==========================================================================
+       HEADER & NAVIGATION
+       ========================================================================== */
+    header {
+      background: var(--primary);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid var(--gold);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.65rem 0;
+    }
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      padding: 5px 12px;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s ease;
+    }
+
+    .logo-link:hover {
+      transform: scale(1.02);
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      color: var(--cream);
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.4px;
+      padding: 6px 0;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .nav-menu a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header-btn {
+      padding: 0.55rem 1.25rem;
+      font-size: 0.82rem;
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 38px;
+      height: 38px;
+      padding: 6px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: var(--transition-smooth);
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    @media (max-width: 991px) {
+      .menu-toggle {
+        display: flex;
+      }
+      .header-actions .header-btn {
+        display: none;
+      }
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--primary-dark);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.5rem 2rem;
+        gap: 1.25rem;
+        border-bottom: 3px solid var(--gold);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        transform: translateY(-10px);
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transition-smooth);
+      }
+      .nav-menu.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .nav-menu a {
+        font-size: 1.05rem;
+        display: block;
+        width: 100%;
+      }
+    }
+
+    /* ==========================================================================
+       HERO SECTION
+       ========================================================================== */
+    .hero {
+      position: relative;
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-align: center;
+      padding: 5rem 1rem;
+      background-image: url('https://i.postimg.cc/2yybBJvx/Screenshot-2026-09-13-010547.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(13, 59, 46, 0.90) 0%, rgba(10, 61, 92, 0.85) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 6px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      background: rgba(201, 162, 39, 0.15);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 4.4rem);
+      line-height: 1.08;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero h1 .script-tagline {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 500;
+      color: var(--gold-light);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      margin-top: 0.5rem;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      color: var(--gold-soft);
+      letter-spacing: 1.5px;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      opacity: 0.92;
+      margin-bottom: 2.25rem;
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-badges-strip {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.84rem;
+      color: rgba(255, 255, 255, 0.9);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 1.75rem;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .hero-badges-strip span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-badges-strip span strong {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       KEY ACTIONS / CONNECTDOC FEATURE
+       ========================================================================== */
+    .actions-section {
+      background: var(--cream);
+      padding: 4.5rem 0 3rem;
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 880px) {
+      .actions-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .action-card {
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2.25rem;
+      position: relative;
+      overflow: hidden;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: var(--transition-smooth);
+      box-shadow: var(--shadow-md);
+    }
+
+    .action-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .action-card.card-pharmacy {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border: 2px solid var(--gold);
+    }
+
+    .action-card.card-doctor {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue-doctor));
+      border: 2px solid rgba(30, 136, 229, 0.6);
+    }
+
+    .action-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .action-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .card-doctor .action-icon {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .action-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      line-height: 1.2;
+      color: var(--gold-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .action-card p {
+      font-size: 0.92rem;
+      opacity: 0.92;
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+
+    .action-feature-list {
+      list-style: none;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.95;
+    }
+
+    .action-feature-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .action-feature-list li::before {
+      content: '✓';
+      color: var(--gold-light);
+      font-weight: bold;
+    }
+
+    /* Interactive consent box for 3rd party telemedicine */
+    .consent-wrapper {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+
+    .consent-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .consent-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--gold);
+      margin-top: 2px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .consent-label strong {
+      color: var(--gold-light);
+    }
+
+    /* ==========================================================================
+       WELCOME / ABOUT SECTION
+       ========================================================================== */
+    .welcome-section {
+      background: var(--cream-dark);
+      position: relative;
+    }
+
+    .welcome-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 920px) {
+      .welcome-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    .welcome-text .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .welcome-text p {
+      color: var(--text-body);
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .welcome-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      color: var(--primary-mid);
+      font-style: italic;
+      border-left: 3px solid var(--gold);
+      padding-left: 1.25rem;
+      margin: 1.5rem 0;
+    }
+
+    .pharmacist-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #ffffff;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(201, 162, 39, 0.3);
+    }
+
+    .pharmacist-badge .badge-icon {
+      font-size: 1.75rem;
+    }
+
+    .pharmacist-badge strong {
+      display: block;
+      color: var(--primary);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .pharmacist-badge span {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .welcome-image-wrapper {
+      position: relative;
+    }
+
+    .welcome-photo {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 4px solid var(--gold);
+      aspect-ratio: 4/3;
+    }
+
+    .welcome-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .welcome-caption-tag {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      background: rgba(13, 59, 46, 0.92);
+      color: var(--gold-light);
+      padding: 0.85rem 1.25rem;
+      border-radius: var(--radius-md);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      text-align: center;
+      border: 1px solid var(--gold);
+      backdrop-filter: blur(5px);
+    }
+
+    /* ==========================================================================
+       SERVICES SECTION
+       ========================================================================== */
+    .services-section {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .services-section .section-title {
+      color: var(--gold-light);
+    }
+
+    .services-section .section-subtitle {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 2rem 1.5rem;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(201, 162, 39, 0.25);
+      transition: var(--transition-smooth);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .service-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .service-icon-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(201, 162, 39, 0.15);
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--gold-light);
+      font-size: 1.35rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .service-card p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    /* Why Us / Trust highlights */
+    .why-strip {
+      margin-top: 4rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .why-item h4 {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--gold);
+      font-size: 1.2rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .why-item p {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.82rem;
+    }
+
+    /* ==========================================================================
+       PRODUCTS SECTION
+       ========================================================================== */
+    .products-section {
+      background: var(--cream);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      transition: var(--transition-smooth);
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold);
+    }
+
+    .product-image {
+      position: relative;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.04);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--primary);
+      color: var(--gold-light);
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border: 1px solid var(--gold);
+    }
+
+    .product-details {
+      padding: 1.5rem;
+    }
+
+    .product-details h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .product-details p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       COMMUNITY & CHARITY
+       ========================================================================== */
+    .community-section {
+      background: #ffffff;
+    }
+
+    .community-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    @media (max-width: 880px) {
+      .community-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .community-card {
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-smooth);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .community-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .community-image {
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+
+    .community-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .community-content {
+      padding: 1.75rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .community-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+    }
+
+    .community-content p {
+      color: var(--text-body);
+      font-size: 0.92rem;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    .amount-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--primary-dark);
+      padding: 0.4rem 1.1rem;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 0.95rem;
+      align-self: flex-start;
+    }
+
+    /* ==========================================================================
+       CONSOLIDATED VISIT & CONTACT HUB (Clean, no repetition)
+       ========================================================================== */
+    .contact-hub-section {
+      background: var(--cream-dark);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      align-items: stretch;
+    }
+
+    @media (max-width: 950px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-details-box {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-details-header {
+      margin-bottom: 1.75rem;
+    }
+
+    .contact-details-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.85rem;
+      color: var(--primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-details-header p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* Contact channels list */
+    .contact-channels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 550px) {
+      .contact-channels {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .channel-item {
+      background: var(--cream);
+      padding: 1.15rem;
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--gold);
+      transition: var(--transition-smooth);
+    }
+
+    .channel-item:hover {
+      background: var(--gold-soft);
+      transform: translateY(-2px);
+    }
+
+    .channel-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .channel-val {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    .channel-val a {
+      color: var(--primary);
+      transition: color 0.2s;
+    }
+
+    .channel-val a:hover {
+      color: var(--gold-dark);
+    }
+
+    /* Opening hours table */
+    .hours-table-wrap {
+      background: var(--primary-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      border: 1px solid rgba(13, 59, 46, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .hours-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hours-list {
+      list-style: none;
+      font-size: 0.88rem;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.35rem 0;
+      border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+    }
+
+    .hours-list li:last-child {
+      border-bottom: none;
+    }
+
+    .hours-list .day {
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    .hours-list .time {
+      color: var(--primary-mid);
+      font-weight: 600;
+    }
+
+    /* Direct contact CTAs */
+    .contact-ctas {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .map-container {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 3px solid #ffffff;
+      min-height: 420px;
+      display: flex;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border: 0;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    footer {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #061c16 100%);
+      color: #ffffff;
+      padding: 4.5rem 0 2rem;
+      border-top: 3px solid var(--gold);
+    }
+
+    .footer-top {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    .footer-logo-wrapper {
+      background: #ffffff;
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .footer-logo-wrapper .logo-img {
+      height: 55px;
+    }
+
+    .footer-motto {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.9rem;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-lead {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+    }
+
+    .footer-disclaimer-card {
+      background: rgba(0, 0, 0, 0.25);
+      border-left: 3px solid var(--gold);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin: 2rem auto;
+      max-width: 900px;
+      text-align: left;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .footer-disclaimer-card strong {
+      color: var(--gold-light);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    .footer-nav a {
+      color: rgba(255, 255, 255, 0.75);
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover {
+      color: var(--gold-light);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ==========================================================================
+       FLOATING QUICK ACTION (Mobile Friendly)
+       ========================================================================== */
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 999;
+      background: #25D366;
+      color: #ffffff;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      transition: var(--transition-smooth);
+      border: 2px solid #ffffff;
+    }
+
+    .floating-whatsapp:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.55);
+    }
+
+    .floating-whatsapp svg {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+
+    @media (max-width: 480px) {
+      .floating-whatsapp {
+        bottom: 18px;
+        right: 18px;
+        width: 52px;
+        height: 52px;
+      }
+      .floating-whatsapp svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <aside class="top-bar" aria-label="Quick pharmacy contact and status">
+    <div class="container">
+      <div class="top-bar-inner">
+        <div class="top-bar-highlight">
+          <span>🌙</span>
+          <span><strong>Open Late:</strong> Port Road, Letterkenny &bull; Karima Sweeney MPSI</span>
+        </div>
+        <div class="top-bar-contacts">
+          <a href="tel:+353749210034" title="Call Sweeney's Pharmacy">
+            <span>📞</span> 074 921 0034
+          </a>
+          <a href="mailto:info@sweeneypharmacy.ie" title="Email Sweeney's Pharmacy">
+            <span>✉️</span> info@sweeneypharmacy.ie
+          </a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a href="#home" class="logo-link" aria-label="Sweeney's Pharmacy Letterkenny Home">
+          <img src="https://i.postimg.cc/856PQSh0/Whats-App-Image-2026-09-11-at-8-07-15-PM-removebg-preview.png" alt="Sweeney's Pharmacy Logo" class="logo-img">
+        </a>
+        
+        <nav aria-label="Main Navigation">
+          <ul class="nav-menu" id="navMenu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#community">Community</a></li>
+            <li><a href="#telehealth">Doctor Consult</a></li>
+            <li><a href="#visit">Visit &amp; Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <a href="https://wa.me/447230259631?text=Hello%20Sweeney's%20Pharmacy%2C%20I%20have%20an%20enquiry..." 
+             target="_blank" rel="noopener noreferrer" 
+             class="btn btn-gold header-btn">
+            💬 WhatsApp Us
+          </a>
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-badge">Karima Sweeney MPSI &bull; Letterkenny</div>
+        <h1>
+          SWEENEY'S PHARMACY
+          <span class="script-tagline">Your Health. Our Priority.</span>
+        </h1>
+        <p class="hero-subtitle">The Late Night Pharmacy</p>
+        <p class="hero-tagline">Providing trusted dispensing, healthcare guidance, and late evening care to Letterkenny</p>
+        
+        <div class="hero-buttons">
+          <a href="https://wa.me/447230259631?text=Hello%20Sweeney's%20Pharmacy%2C%20I%20would%20like%20to%20order%20or%20inquire%20about%20a%20prescription..." 
+             target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+            💬 Message on WhatsApp
+          </a>
+          <a href="#telehealth" class="btn btn-outline-gold">
+            🩺 Online Doctor Access
+          </a>
+          <a href="#visit" class="btn btn-gold">
+            📍 Location &amp; Hours
+          </a>
+        </div>
+
+        <div class="hero-badges-strip">
+          <span>✓ <strong>Registered Pharmacist</strong> Care</span>
+          <span>✓ <strong>Late Night</strong> Service</span>
+          <span>✓ <strong>Port Road</strong> Easy Parking</span>
+          <span>✓ <strong>Prescription</strong> Support</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY ONLINE PATHWAYS (Prescription/Pharmacy WhatsApp + ConnectDoc Telehealth) -->
+    <section class="section-padding actions-section" id="telehealth">
+      <div class="container">
+        <div class="text-center" style="margin-bottom: 2.5rem;">
+          <span class="eyebrow">Direct Support</span>
+          <h2 class="section-title">How May We Assist You?</h2>
+          <div class="ornament-line"><span>❦</span></div>
+          <p class="section-subtitle">Reach our pharmacy counter directly for medication queries, or access independent online medical consultations.</p>
+        </div>
+
+        <div class="actions-grid">
+          <!-- CARD 1: Pharmacy Direct Dispensing & Chat -->
+          <div class="action-card card-pharmacy">
+            <div>
+              <div class="action-card-header">
+                <div class="action-icon" aria-hidden="true">💬</div>
+                <div>
+                  <h3>Pharmacy Dispensary &amp; Advice</h3>
+                  <span style="font-size: 0.85rem; color: var(--gold-light);">Talk with our pharmacy team</span>
+                </div>
+              </div>
+              <p>Send photos of your prescriptions, check stock of specialized medicines, or ask our pharmacists for confidential healthcare advice.</p>
+              
+              <ul class="action-feature-list">
+                <li>Fast prescription drop-off &amp; repeat dispensing queries</li>
+                <li>Vitamin &amp; BioCare supplement recommendations</li>
+                <li>Over-the-counter advice before you visit</li>
+              </ul>
+            </div>
+
+            <div>
+              <a href="https://wa.me/447230259631?text=Hello%20Sweeney's%20Pharmacy%2C%20I%20would%20like%20to%20ask%20about..." 
+                 target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%;">
+                💬 Open WhatsApp Chat
+              </a>
+            </div>
+          </div>
+
+          <!-- CARD 2: ConnectDoc Online Doctor (Compliant with Irish Medical Consent) -->
+          <div class="action-card card-doctor">
+            <div>
+              <div class="action-card-header">
+                <div class="action-icon" aria-hidden="true">🩺</div>
+                <div>
+                  <h3>Consult an Online Doctor</h3>
+                  <span style="font-size: 0.85rem; color: #90caf9;">Powered by ConnectDoc.ie</span>
+                </div>
+              </div>
+              <p>Need to see a GP online for a prescription or medical certificate? Connect with independent Irish-registered doctors via ConnectDoc.</p>
+
+              <!-- Consent Agreement Box -->
+              <div class="consent-wrapper">
+                <label class="consent-label" for="doctorConsent">
+                  <input type="checkbox" id="doctorConsent">
+                  <span>
+                    I confirm that I will be redirected to <strong>ConnectDoc.ie</strong>, an independent third-party provider. Sweeney's Pharmacy does not provide medical consultations and is not affiliated with ConnectDoc.
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <a href="https://www.connectdoc.ie" target="_blank" rel="noopener noreferrer" 
+                 class="btn btn-blue btn-disabled" id="doctorBtn" style="width: 100%;">
+                Connect with Doctor &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WELCOME / ABOUT US -->
+    <section class="section-padding welcome-section" id="about">
+      <div class="container">
+        <div class="welcome-grid">
+          <div class="welcome-text">
+            <span class="eyebrow">Dedicated to Letterkenny</span>
+            <h2 class="section-title">Welcome to Sweeney's Late Night Pharmacy</h2>
+            <div class="ornament-line" style="margin-left: 0;"><span>❦</span></div>
+            
+            <p>
+              For almost two years, Sweeney's Late Night Pharmacy has been a trusted cornerstone of healthcare for families and individuals across Letterkenny and County Donegal.
+            </p>
+            <p>
+              Under the leadership of <strong>Karima Sweeney MPSI</strong>, our focus is simple: offering personal, approachable, and high-standard pharmacy care when you need it most — including late evening hours.
+            </p>
+            
+            <div class="welcome-quote">
+              "We believe healthcare is personal. Every patient deserves attentive time, genuine listening, and expert care."
+            </div>
+
+            <div class="pharmacist-badge">
+              <span class="badge-icon">👩‍⚕️</span>
+              <div>
+                <strong>Karima Sweeney MPSI</strong>
+                <span>Superintendent Pharmacist &bull; Letterkenny</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="welcome-image-wrapper">
+            <div class="welcome-photo">
+              <img src="https://i.postimg.cc/2yybBJvx/Screenshot-2026-09-13-010547.png" alt="Interior view of Sweeney's Late Night Pharmacy on Port Road" loading="lazy">
+            </div>
+            <div class="welcome-caption-tag">
+              Inside Our Port Road Pharmacy
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPREHENSIVE SERVICES -->
+    <section class="section-padding services-section" id="services">
+      <div class="container">
+        <div class="text-center">
+          <span class="eyebrow" style="color: var(--gold-light);">Our Healthcare Expertise</span>
+          <h2 class="section-title">Comprehensive Pharmacy Services</h2>
+          <div class="ornament-line"><span>❦</span></div>
+          <p class="section-subtitle">Everything you and your family need under one welcoming roof.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon-box" aria-hidden="true">💊</div>
+            <h3>Prescription Dispensing</h3>
+            <p>Fast, accurate dispensing for all HSE Drug Payment Schemes, Medical Cards, DPS, and Private Prescriptions.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon-box" aria-hidden="true">🩺</div>
+            <h3>Pharmacist Consultations</h3>
+            <p>Private, in-depth advice in our confidential consultation room for minor ailments and medication reviews.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon-box" aria-hidden="true">💉</div>
+            <h3>Vaccination Clinic</h3>
+            <p>Seasonal Flu jabs, COVID-19 booster vaccinations, and travel health guidance administered by trained pharmacists.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon-box" aria-hidden="true">❤️</div>
+            <h3>Blood Pressure Monitoring</h3>
+            <p>Walk-in blood pressure screenings and cardiovascular wellness support to help you stay ahead of your health.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon-box" aria-hidden="true">👶</div>
+            <h3>Mother &amp; Baby Care</h3>
+            <p>Specialist baby formulas, colic relief, dermatological creams, thermometers, and infant healthcare essentials.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon-box" aria-hidden="true">🚭</div>
+            <h3>Smoking Cessation</h3>
+            <p>Dedicated one-on-one nicotine replacement therapy plans and encouraging guidance to help you quit for good.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon-box" aria-hidden="true">🌿</div>
+            <h3>BioCare &amp; Supplements</h3>
+            <p>High-potency clinical vitamins, probiotics, immunity defenders, and premium nutritional supplements.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon-box" aria-hidden="true">🩹</div>
+            <h3>First Aid &amp; OTC Remedies</h3>
+            <p>Complete selection of over-the-counter pain relief, allergy care, digestive health, wound dressings, and eye drops.</p>
+          </article>
+        </div>
+
+        <!-- Trust Highlights -->
+        <div class="why-strip">
+          <div class="why-grid">
+            <div class="why-item">
+              <h4>Personalized Care</h4>
+              <p>Pharmacists who take time to know your history and needs.</p>
+            </div>
+            <div class="why-item">
+              <h4>Open Late</h4>
+              <p>Accessible evening hours when other clinics may be closed.</p>
+            </div>
+            <div class="why-item">
+              <h4>Clinical Quality</h4>
+              <p>Top pharmaceutical standards and PSI regulated premises.</p>
+            </div>
+            <div class="why-item">
+              <h4>Easy Accessibility</h4>
+              <p>Convenient Port Road location with straightforward parking.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section class="section-padding products-section" id="products">
+      <div class="container">
+        <div class="text-center">
+          <span class="eyebrow">In-Store Range</span>
+          <h2 class="section-title">Quality Healthcare &amp; Wellness Products</h2>
+          <div class="ornament-line"><span>❦</span></div>
+          <p class="section-subtitle">We stock clinically formulated brands, supplements, and essentials selected by our pharmacists.</p>
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://i.postimg.cc/qNCt5CJR/Medicine.jpg" alt="Comprehensive OTC medicines and family remedies" loading="lazy">
+              <span class="product-badge">Over The Counter</span>
+            </div>
+            <div class="product-details">
+              <h3>Medicines &amp; Family Remedies</h3>
+              <p>From seasonal allergies and colds to pain relief and pediatric solutions, we carry trusted brands with clinical guidance readily available.</p>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://i.postimg.cc/SnzXvzSx/medicine-2.jpg" alt="BioCare nutritional supplements and vitamins" loading="lazy">
+              <span class="product-badge">Premium Wellness</span>
+            </div>
+            <div class="product-details">
+              <h3>BioCare Nutrition &amp; Supplements</h3>
+              <p>Science-backed nutritional formulations, potent probiotics, and bio-available vitamins tailored for optimal immune and gut health.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY & GIVING BACK -->
+    <section class="section-padding community-section" id="community">
+      <div class="container">
+        <div class="text-center">
+          <span class="eyebrow">Community Spirit</span>
+          <h2 class="section-title">Giving Back in Letterkenny &amp; Beyond</h2>
+          <div class="ornament-line"><span>❦</span></div>
+          <p class="section-subtitle">Healthcare is about people and compassion. We are proud to support local wellness and global humanitarian relief.</p>
+        </div>
+
+        <div class="community-grid">
+          <article class="community-card">
+            <div class="community-image">
+              <img src="https://i.postimg.cc/bZ2GB2yN/exclusive-Wellness-2024.jpg" alt="Letterkenny Exclusive Wellness Day Community Event" loading="lazy">
+            </div>
+            <div class="community-content">
+              <div>
+                <h3>Exclusive Wellness Day</h3>
+                <p>A dedicated community initiative organized by Sweeney's Pharmacy providing free vital health checks, blood pressure assessments, and tailored well-being guidance to local residents.</p>
+              </div>
+              <span style="font-size: 0.85rem; color: var(--gold-dark); font-weight: 600;">Community Health Initiative &bull; Letterkenny</span>
+            </div>
+          </article>
+
+          <article class="community-card">
+            <div class="community-image">
+              <img src="https://i.postimg.cc/XryZzyjq/Support-charity.jpg" alt="Charity support cheque presentation to Salam Charity" loading="lazy">
+            </div>
+            <div class="community-content">
+              <div>
+                <h3>Humanitarian Medicine Aid</h3>
+                <p>Proud to have contributed critical financial aid to Salam Charity (RCN 1142191) to help fund life-saving medicines and essential healthcare supplies for families in Gaza.</p>
+              </div>
+              <div class="amount-badge">
+                <span>❤️</span> €1,500 Donated
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNIFIED VISIT & CONTACT HUB (Consolidated, No Redundancies) -->
+    <section class="section-padding contact-hub-section" id="visit">
+      <div class="container">
+        <div class="text-center">
+          <span class="eyebrow">Visit &amp; Contact</span>
+          <h2 class="section-title">Find Us on Port Road</h2>
+          <div class="ornament-line"><span>❦</span></div>
+          <p class="section-subtitle">Conveniently situated in Letterkenny. Drop by our counter or get in touch through your preferred channel.</p>
+        </div>
+
+        <div class="contact-layout">
+          <!-- Left: Information, Hours & Direct Contact Options -->
+          <div class="contact-details-box">
+            <div>
+              <div class="contact-details-header">
+                <h3>Sweeney's Late Night Pharmacy</h3>
+                <p>Under the care of Karima Sweeney MPSI</p>
+              </div>
+
+              <!-- Channels -->
+              <div class="contact-channels">
+                <div class="channel-item">
+                  <div class="channel-label">📍 Location</div>
+                  <div class="channel-val">Port Road, Letterkenny<br>Co. Donegal, F92 T2WX</div>
+                </div>
+
+                <div class="channel-item">
+                  <div class="channel-label">📞 Direct Telephone</div>
+                  <div class="channel-val">
+                    <a href="tel:+353749210034">074 921 0034</a>
+                  </div>
+                </div>
+
+                <div class="channel-item">
+                  <div class="channel-label">💬 WhatsApp Dispensary</div>
+                  <div class="channel-val">
+                    <a href="https://wa.me/447230259631?text=Hello%20Sweeney's%20Pharmacy..." target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+                  </div>
+                </div>
+
+                <div class="channel-item">
+                  <div class="channel-label">✉️ Email Inquiries</div>
+                  <div class="channel-val">
+                    <a href="mailto:info@sweeneypharmacy.ie">info@sweeneypharmacy.ie</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hours Table -->
+              <div class="hours-table-wrap">
+                <div class="hours-title">
+                  <span>🕒</span> Opening Hours
+                </div>
+                <ul class="hours-list">
+                  <li>
+                    <span class="day">Monday &ndash; Friday</span>
+                    <span class="time">9:00 AM &ndash; 9:00 PM (Late)</span>
+                  </li>
+                  <li>
+                    <span class="day">Saturday</span>
+                    <span class="time">9:30 AM &ndash; 8:00 PM (Late)</span>
+                  </li>
+                  <li>
+                    <span class="day">Sunday &amp; Bank Holidays</span>
+                    <span class="time">11:00 AM &ndash; 6:00 PM</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="contact-ctas">
+              <a href="tel:+353749210034" class="btn btn-gold">
+                📞 Call 074 921 0034
+              </a>
+              <a href="https://wa.me/447230259631?text=Hello%20Sweeney's%20Pharmacy%2C%20I%20would%20like%20to%20ask..." 
+                 target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+                💬 WhatsApp Message
+              </a>
+              <a href="mailto:info@sweeneypharmacy.ie?subject=Customer%20Enquiry" class="btn btn-blue">
+                ✉️ Email Us
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Google Map -->
+          <div class="map-container">
+            <iframe 
+              src="https://www.google.com/maps?q=Sweeney's+Late+Night+Pharmacy,+Port+Road,+Letterkenny,+F92+T2WX,+Ireland&output=embed"
+              title="Google Map location of Sweeney's Late Night Pharmacy in Letterkenny"
+              loading="lazy"
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-logo-wrapper">
+          <img src="https://i.postimg.cc/856PQSh0/Whats-App-Image-2026-09-11-at-8-07-15-PM-removebg-preview.png" alt="Sweeney's Pharmacy" class="logo-img">
+        </div>
+        <p class="footer-motto">Your Health. Our Priority.</p>
+        <p class="footer-lead">Port Road, Letterkenny, Co. Donegal &bull; Supervised by Karima Sweeney MPSI</p>
+      </div>
+
+      <!-- Third-Party Telehealth Disclaimer -->
+      <div class="footer-disclaimer-card">
+        <strong>Important Regulatory &amp; Telehealth Notice:</strong>
+        This website provides convenient external links to ConnectDoc.ie, an independent third-party telehealth service. Sweeney's Late Night Pharmacy does not provide independent clinical medical evaluations online, nor does it control or endorse the specific medical consultations conducted via ConnectDoc. Registered medical consultations, prescriptions, and advice are provided solely by ConnectDoc and its qualified medical practitioners.
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer Legal and Quick Links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#community">Community</a>
+        <a href="#visit">Contact &amp; Hours</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms &amp; Conditions</a>
+      </nav>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sweeney's Late Night Pharmacy &bull; Karima Sweeney MPSI &bull; All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE FLOATING ACTION (Tap to WhatsApp) -->
+  <a href="https://wa.me/447230259631?text=Hello%20Sweeney's%20Pharmacy..." 
+     target="_blank" rel="noopener noreferrer" 
+     class="floating-whatsapp" 
+     aria-label="Chat directly on WhatsApp"
+     title="Message Sweeney's Pharmacy on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.584 1.961.949 3.19.949 3.182 0 5.768-2.586 5.768-5.766 0-3.18-2.586-5.766-5.768-5.766zm9.969 5.766c0 5.514-4.486 10-10 10-1.823 0-3.539-.493-5.018-1.349l-6.982 1.826 1.862-6.804c-.958-1.547-1.512-3.364-1.512-5.323 0-5.514 4.486-10 10-10s10 4.486 10 10z"/>
+    </svg>
+  </a>
+
+  <!-- SCRIPTS -->
+  <script>
+    // --- Mobile Menu Toggle ---
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener('click', () => {
+        const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.classList.toggle('active');
+        navMenu.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', !isExpanded);
+      });
+
+      // Close menu when clicking nav links
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          menuToggle.classList.remove('active');
+          navMenu.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // --- ConnectDoc Telemedicine Consent Checkbox ---
+    const doctorConsent = document.getElementById('doctorConsent');
+    const doctorBtn = document.getElementById('doctorBtn');
+
+    if (doctorConsent && doctorBtn) {
+      doctorConsent.addEventListener('change', function() {
+        if (this.checked) {
+          doctorBtn.classList.remove('btn-disabled');
+        } else {
+          doctorBtn.classList.add('btn-disabled');
+        }
+      });
+
+      doctorBtn.addEventListener('click', function(e) {
+        if (!doctorConsent.checked) {
+          e.preventDefault();
+          alert('Please tick the consent checkbox to acknowledge you are connecting to ConnectDoc.');
+        }
+      });
+    }
+
+    // --- Smooth Scroll with Header Offset ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#' || targetId === '') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          const headerHeight = document.querySelector('header').offsetHeight || 70;
+          const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - headerHeight - 15;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+	
